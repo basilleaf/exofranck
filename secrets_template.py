@@ -1,0 +1,4 @@
+WP_USER = ''
+WP_PW = ''
+BITLY_API_KEY = ''
+BITLY_USER_ID = ''
