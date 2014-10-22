@@ -1,6 +1,7 @@
 import csv
 from time import sleep
-from secrets import WP_USER, WP_PW
+from random import randint
+from secrets import WP_USER, WP_PW, WP_XMLRPC_URL
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc.compat import xmlrpc_client
@@ -9,7 +10,7 @@ from wordpress_xmlrpc.methods import media
 
 def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
 
-    wp = Client('http://exoplanets.beforeamillionuniverses.com/xmlrpc.php', WP_USER, WP_PW)
+    wp = Client(WP_XMLRPC_URL, WP_USER, WP_PW)
 
     # first upload the image
     if local_img_file:
@@ -40,6 +41,7 @@ def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
     print "posted " + title + " as " + post.slug
 
 def post_all_planets():
+    c = 0
     labels = ['star','planet','Jup_mass','Earth_mass','Period_day','semi_ajor_axis_au','discovered_year','Constellation_en','Visibility','V_magnitude']
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
@@ -57,6 +59,12 @@ def post_all_planets():
 
             post_to_wordpress(title, content, slug, '', '')
 
+            # post 10 at a time then pause for a few minutes
+            c = c + 1
+            if c > 25:
+                print "sleeping..."
+                sleep(60*randint(1, 10))
+                c = 0
 
 
 if __name__ == "__main__":
