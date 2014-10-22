@@ -1,4 +1,5 @@
 import csv
+from time import sleep
 from secrets import WP_USER, WP_PW
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
@@ -43,18 +44,18 @@ def post_all_planets():
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            this_planet = zip(labels, row)
+            this_planet = dict(zip(labels, row))
 
-            slug = row[1].strip().lower().replace(' ','-')
+            title = this_planet['planet']
 
-            title = this_planet[1][1]
+            slug = title.strip().lower().replace(' ','-')
 
-            content = ""
-            for p in this_planet:
-                content += "<bold>%s:</bold> %s <br>" % (p[0], p[1])
+            content = "<dl>"
+            for k,v in this_planet.items():
+                content += "<dt>%s:</dt><dd> %s </dd>" % (k, v)
+            content += "</dl>"
 
             post_to_wordpress(title, content, slug, '', '')
-
 
 
 

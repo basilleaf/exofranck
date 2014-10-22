@@ -27,9 +27,9 @@ def shrink_all_urls():
         short_url = res['url']
 
         with open("short_urls.csv", "a") as myfile:
-            line = "%s,%s\n" % (short_url, long_url)
+            line = "%s,%s" % (short_url, long_url)
             print "updated csv: %s" % line
-            myfile.write(line)
+            myfile.write(line + "\n")
 
 def all_slugs():
     with open('iau_list.csv') as csvfile:
