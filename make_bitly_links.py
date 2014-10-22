@@ -31,7 +31,6 @@ def shrink_all_urls():
             print "updated csv: %s" % line
             myfile.write(line)
 
-
 def all_slugs():
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
@@ -41,4 +40,5 @@ def all_slugs():
 
 if __name__ == "__main__":
     shrink_all_urls()
+    print "Bye!"
 
