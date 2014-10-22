@@ -1,6 +1,7 @@
 import csv
 import bitlyapi
 from time import sleep
+from datetime import datetime
 from secrets import BITLY_USER_ID, BITLY_API_KEY
 
 def shrink_all_urls():
@@ -17,8 +18,9 @@ def shrink_all_urls():
 
         except bitlyapi.bitly.APIError:
             # wait an hour and try again
-            print "sleeping for an hour..."
+            print "sleeping for an hour... " + str(datetime.now())
             sleep(60*60)  # bitly api limits restart hourly
+
             b = bitlyapi.BitLy(BITLY_USER_ID, BITLY_API_KEY)
             res = b.shorten(domain="j.mp", longUrl=long_url)
 
