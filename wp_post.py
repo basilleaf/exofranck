@@ -3,7 +3,7 @@ from secrets import WP_USER, WP_PW
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc.compat import xmlrpc_client
-from wordpress_xmlrpc.methods import media, posts
+from wordpress_xmlrpc.methods import media
 
 
 def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
@@ -40,7 +40,6 @@ def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
 
 def post_all_planets():
     labels = ['star','planet','Jup_mass','Earth_mass','Period_day','semi_ajor_axis_au','discovered_year','Constellation_en','Visibility','V_magnitude']
-    c = 0
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
@@ -56,11 +55,8 @@ def post_all_planets():
 
             post_to_wordpress(title, content, slug, '', '')
 
-            # just testing here on 20 or so..
-            c = c + 1
-            if c > 20:
-                import sys  # just testing 1
-                sys.exit()
+
+
 
 if __name__ == "__main__":
     post_all_planets()
