@@ -8,7 +8,7 @@ from wordpress_xmlrpc.compat import xmlrpc_client
 from wordpress_xmlrpc.methods import media
 
 
-def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
+def post_to_wordpress(title, lookUP_name, content, slug, more_info_url, local_img_file):
 
     wp = Client(WP_XMLRPC_URL, WP_USER, WP_PW)
 
