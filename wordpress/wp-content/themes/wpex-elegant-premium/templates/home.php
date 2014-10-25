@@ -121,7 +121,7 @@ get_header(); ?>
 					<?php } ?>
 					<?php wp_reset_postdata(); ?>
 				</article><!-- #post -->
-				<?php comments_template(); ?>
+				<!-- ?php comments_template(); ? -->
 			<?php endwhile; ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
