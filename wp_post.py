@@ -115,6 +115,7 @@ def post_all_planets():
 
         print "http://exoplanets.seti.org/%s" % slug
 
+        c = c + 1
         if c > 25:
             timer = 60*randint(1, 3)
             print "sleeping... %s" % str(timer/60)
