@@ -1,5 +1,6 @@
 import csv
 import requests
+import jinja2
 from json import dumps, loads
 from time import sleep
 from random import randint
@@ -62,26 +63,35 @@ def add_or_edit_wp_post(title, content, slug, more_info_url, local_img_file):
 
 def create_the_content(this_planet):
 
-    title = this_planet['planet']
-    slug = title.strip().lower().replace(' ','-')
+    templateLoader = jinja2.FileSystemLoader( searchpath="/" )
+    templateEnv = jinja2.Environment( loader=templateLoader )
+    TEMPLATE_FILE = "/users/lballard/projects/exofranck/post_template.html"
+    template = templateEnv.get_template( TEMPLATE_FILE )
+
+    context = {}
+    context['title'] = this_planet['planet']
+    context['slug'] = context['title'].strip().lower().replace(' ','-')
+    context['this_planet'] = this_planet
 
     # fetch the lookUP json feed
     lookUP_name = this_planet['lookUP_name'].replace(' ','+')
     url = "http://www.strudel.org.uk/lookUP/json/?name=%s" % lookUP_name
     lookUP_json = loads(requests.get(url).text)
 
-    content = "<dl>"
-    for k,v in this_planet.items():
-        content += "<dt>%s:</dt><dd> %s </dd>" % (k, v)
-    content += "</dl>"
+    # wikisky image
+    context['wikisky_link'] = lookUP_json['image']['href']
+    context['wikisky_src'] = lookUP_json['image']['src']
 
-    content += """
-                <div class = "%s">
-                    %s
-                <div>
-            """ % ('lookUP_json', str(lookUP_json))
+    # virtualsky embed
+    ra = lookUP_json['ra']['decimal']
+    dec = lookUP_json['dec']['decimal']
+    star = this_planet['lookUP_name'].replace(' ', '+')
+    embed_url = "http://lcogt.net/virtualsky/embed/?projection=gnomic&ra=%s&dec=%s&showdate=false&showposition=false&constellationlabels=true&constellationboundaries=true&fov=50&objects=%s" % (ra, dec, star)
+    context['virtualsky_url'] = embed_url
 
-    return slug, title, content
+    content = template.render(context)
+
+    return context['slug'], context['title'], content
 
 
 def get_iau_list():
@@ -105,8 +115,6 @@ def post_all_planets():
 
         print "http://exoplanets.seti.org/%s" % slug
 
-        # post 10 at a time then pause for a few minutes
-        c = c + 1
         if c > 25:
             timer = 60*randint(1, 3)
             print "sleeping... %s" % str(timer/60)
