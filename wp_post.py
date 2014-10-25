@@ -8,7 +8,7 @@ from wordpress_xmlrpc.compat import xmlrpc_client
 from wordpress_xmlrpc.methods import media
 
 
-def post_to_wordpress(title, lookUP_name, content, slug, more_info_url, local_img_file):
+def post_to_wordpress(title, content, slug, more_info_url, local_img_file):
 
     wp = Client(WP_XMLRPC_URL, WP_USER, WP_PW)
 
@@ -40,9 +40,10 @@ def post_to_wordpress(title, lookUP_name, content, slug, more_info_url, local_im
 
     print "posted " + title + " as " + post.slug
 
+
 def post_all_planets():
     c = 0
-    labels = ['star','planet','Jup_mass','Earth_mass','Period_day','semi_ajor_axis_au','discovered_year','Constellation_en','Visibility','V_magnitude']
+    labels = ['star','planet','lookUP_name','Jup_mass','Earth_mass','Period_day','semi_ajor_axis_au','discovered_year','Constellation_en','Visibility','V_magnitude']
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
