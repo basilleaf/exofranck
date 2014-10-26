@@ -1,17 +1,24 @@
 /*
- Theme Name:   Wordpress Elegant Premium Theme Child
- Theme URI:    https://creativemarket.com/wpexplorer/38505-Elegant-WordPress-Theme
- Description:  Wordpress Elegant Premium Child Themefor exoplanets.seti.org
- Author:       Lisa Ballard
- Author URI:   http://about.me/lballard
- Template:     wpex-elegant-premium
-
+Theme Name: Elegant Premium Child
+Template: wpex-elegant-premium
+Author: Child Theme Configurator by Lilaea Media
+Version: 1.0
+Updated: 2014-10-26 20:29:40
 */
 
+@charset "UTF-8";
+@import url('../wpex-elegant-premium/style.css');
 
-/* =Theme customization starts here
--------------------------------------------------------------- */
-/* disable interaction on the virtualsky iframe because it wonky */
+
+dt:before {
+  content: "";
+  display: block;
+}
+dt, dd {
+  display: inline;
+}
+
+/* turns off interaction on virtualsky frame */
 .virtualsky {
     margin:0; padding: 0;
     z-index:999;
