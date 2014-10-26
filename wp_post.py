@@ -10,6 +10,8 @@ from wordpress_xmlrpc.methods.posts import NewPost, GetPosts, EditPost
 from wordpress_xmlrpc.compat import xmlrpc_client
 from wordpress_xmlrpc.methods import media
 
+debug = False
+
 wp = Client(WP_XMLRPC_URL, WP_USER, WP_PW)
 all_posts = wp.call(GetPosts({'number':500}))
 
@@ -119,6 +121,8 @@ def post_all_planets():
         add_or_edit_wp_post(title, content, slug, '', '')
 
         print "http://exoplanets.seti.org/%s" % slug
+
+        if debug: break
 
         c = c + 1
         if c > 25:
