@@ -82,15 +82,17 @@ def create_the_content(this_planet):
     try:
         context['wikisky_link'] = lookUP_json['image']['href']
         context['wikisky_src'] = lookUP_json['image']['src']
+
+        # virtualsky embed
+        ra = lookUP_json['ra']['decimal']
+        dec = lookUP_json['dec']['decimal']
+        star = this_planet['lookUP_name'].replace(' ', '+')
+        embed_url = "http://lcogt.net/virtualsky/embed/?projection=gnomic&ra=%s&dec=%s&showdate=false&showposition=false&constellationlabels=true&constellationboundaries=true&fov=50&objects=%s" % (ra, dec, star)
+        context['virtualsky_url'] = embed_url
+
     except KeyError:
         print "no image for %s" % this_planet
 
-    # virtualsky embed
-    ra = lookUP_json['ra']['decimal']
-    dec = lookUP_json['dec']['decimal']
-    star = this_planet['lookUP_name'].replace(' ', '+')
-    embed_url = "http://lcogt.net/virtualsky/embed/?projection=gnomic&ra=%s&dec=%s&showdate=false&showposition=false&constellationlabels=true&constellationboundaries=true&fov=50&objects=%s" % (ra, dec, star)
-    context['virtualsky_url'] = embed_url
 
     content = template.render(context)
 
