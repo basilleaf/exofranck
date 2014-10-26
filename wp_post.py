@@ -79,8 +79,11 @@ def create_the_content(this_planet):
     lookUP_json = loads(requests.get(url).text)
 
     # wikisky image
-    context['wikisky_link'] = lookUP_json['image']['href']
-    context['wikisky_src'] = lookUP_json['image']['src']
+    try:
+        context['wikisky_link'] = lookUP_json['image']['href']
+        context['wikisky_src'] = lookUP_json['image']['src']
+    except KeyError:
+        print "no image for %s" % this_planet
 
     # virtualsky embed
     ra = lookUP_json['ra']['decimal']
