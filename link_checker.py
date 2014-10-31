@@ -5,7 +5,7 @@ def check_all_links():
     with open('short_urls.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            for url in row:
+            for url in row[0:2]:
                 try:
                     urllib2.urlopen(urllib2.Request(url))
                     print "ok: %s" % url
