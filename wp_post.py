@@ -71,8 +71,9 @@ def create_the_content(this_planet):
     template = templateEnv.get_template( TEMPLATE_FILE )
 
     context = {}
-    context['title'] = this_planet['planet']
-    context['slug'] = context['title'].strip().lower().replace(' ','-')
+    context['title'] = this_planet['star']
+    context['star'] = this_planet['star']
+    context['slug'] = context['star'].strip().lower().replace(' ','-')
     context['this_planet'] = this_planet
 
     # fetch the lookUP json feed
@@ -111,12 +112,18 @@ def get_iau_list():
             yield this_planet
 
 
-def post_all_planets():
+def post_all_systems():
     c = 0
 
+    posted = []
     for this_planet in get_iau_list():
 
         slug, title, content = create_the_content(this_planet)
+
+        if slug in posted:
+            continue  # this has already been posted
+
+        posted.append(slug)
 
         add_or_edit_wp_post(title, content, slug, '', '')
 
@@ -133,6 +140,6 @@ def post_all_planets():
 
 
 if __name__ == "__main__":
-    post_all_planets()
+    post_all_systems()
     print "Bye!"
 
