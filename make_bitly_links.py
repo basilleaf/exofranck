@@ -37,10 +37,12 @@ def shrink_all_urls():
             myfile.write(line + "\n")
 
 def all_slugs():
+    slugs = []
     with open('iau_list.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            yield row[0].strip().lower().replace(' ','-')
+            slugs.append(row[0].strip().lower().replace(' ','-'))
+    return list(set(slugs))
 
 
 if __name__ == "__main__":
