@@ -48,10 +48,13 @@ Updated: 2014-10-26 22:15:53
   }
 
   .mobile_about {
-    margin-top:15px;
     z-index:999;
-    position:fixed;
-    right:15px;
+    float:right;
+    margin-top:15px;
+  }
+  .mobile_about {
+    position: relative;
+    z-index: 10;
   }
 
   a#logo_lg {
@@ -139,4 +142,3 @@ legend
   z-index:9;
   pointer-events:none;
 }
-
