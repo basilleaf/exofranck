@@ -18,18 +18,21 @@ Updated: 2014-10-26 22:15:53
   font-size:large;
 }
 
+@media (max-width:500px){
+.virtualsky {
+  height:200px;
+  overflow:hidden;
+
+}
+
+}
 @media (max-width:600px){
-  .virtualsky {
-    height:250px;
-    overflow:hidden;
-  }
-  .virtualsky_frame {
-    pointer-events:none;
-  }
+
   .col-lg-5{
     margin:0;
     padding:0;
   }
+
 }
 
 @media (max-width:1000px){
@@ -60,10 +63,6 @@ Updated: 2014-10-26 22:15:53
     padding:0;
     margin:0;
   }
-
-  .virtualsky_frame {
-      pointer-events:none;
-   }
 
   .hentry {
     padding:55px 0;
@@ -112,3 +111,16 @@ legend
   margin-left:-20px;
 }
 
+
+.virtualsky {
+    padding:0;
+    margin:0;
+  }
+  .virtualsky a {
+    z-index:999;
+
+  }
+  .virtualsky_frame {
+    z-index:9;
+    pointer-events:none;
+  }
