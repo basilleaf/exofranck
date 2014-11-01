@@ -1,5 +1,5 @@
 Make a wordpress post for each exoplanet system, from list of IAU Kepler planets that need names in upcoming campaign.
 
-Using the excellent lookUP json API http://www.strudel.org.uk/lookUP/?name=iota+Draconis
+Built with the excellent lookUP json API http://www.strudel.org.uk/lookUP
 
-deployed at <exoplanets.seti.org>
+Deployed at http://exoplanets.seti.org
