@@ -1,9 +1,84 @@
-<div class="container-fluid">
+<div class="exoposted container-fluid">
 
     <div class="row">
 
-        <div class = "virtualsky col-md-12">
-            <a href = "{{ virtualsky_url }}">
+        <div class="col-lg-5 exo_content">
+            <a href = "{{ wikisky_link }}">
+                <img width = "100%" src = "{{ wikisky_src }}" alt = "Explore in WikiSky" title = "Explore in WikiSky">
+            </a>
+             <legend><a href = "http://archive.stsci.edu/dss/acknowledging.html">DSS</a> Image via <a href = "http://www.wikisky.org/">Wikisky</a></legend>
+
+        </div>
+
+        <div class="col-lg-7">
+            <p class = "lead">
+                Your system is {{ this_planet.star }}.
+                Its host star is located in the constellation of {{ this_planet.Constellation_en }}.  {% if this_planet.Visibility %}
+                    It is {{ this_planet.Visibility|lower }}.
+                {% endif %}
+            </p>
+            <p>
+                {% if planet_count == 1 %}
+                    {{ this_planet.star|title }} has {{ planet_count }} planet:
+                {% else %}
+                    {{ this_planet.star|title }} has {{ planet_count }} planets:
+                {% endif %}
+            </p>
+
+            <ul class = "planets">
+            {% for p in planets %}
+                <li><strong>{{ p.planet|title }}</strong>, discovered in {{ p.discovered_year }}, has a mass {{ p.Earth_mass }} times the mass of Earth and an orbital period of {{ p.Period_day }} days.
+                </li>
+            {% endfor %}
+            </ul>
+
+            <p>
+                       <strong>
+                {% if star_needs_name and planet_count == 1 %}
+                    The star and the planet both need names,
+                {% endif %}
+
+                {% if star_needs_name and planet_count > 1 %}
+                    The star and the planets each need names,
+                {% endif  %}
+
+                {% if not star_needs_name and planet_count == 1 %}
+                    The planet needs a name,
+                {% endif  %}
+
+                {% if not star_needs_name and planet_count > 1 %}
+                    The planets need names,
+                {% endif  %}
+
+                    and
+
+                    {% if not star_needs_name and planet_count == 1 %}
+                    YOU may be able to name it! Check back here in December to find out.
+                    {% else  %}
+                    YOU may be able to name them! Check back here in December to find out.
+                    {% endif  %}
+                </strong>
+            </p>
+
+            <p>
+                Find more about your star on <a href = "{{ simbad_link }}">SIMBAD</a>
+            </p>
+            <p>
+                Find your planetary system using <a href = "http://kepler.nasa.gov/education/starwheel/">Kepler Star Wheel Finder</a>
+            </p>
+        </div>
+
+
+    </div>
+    <div class="row">
+
+        <div class = "virtualsky col-lg-12">
+
+        <p>
+            Find your star in the night sky:
+        </p>
+
+            <a href = "{{ virtualsky_url }}" alt = "Explore in Virtual Sky" title = "Explore in Virtual Sky">
 
                 <div class = "virtualsky_frame">
 
@@ -14,20 +89,12 @@
             </a>
         </div>
 
-        <div class="col-md-4">
-            <dl>
-                {% for k,v in this_planet.items() %}
-                    <dt>{{ k }}</dt><dd> {{ v }} </dd>
-                {% endfor %}
-            </dl>
-        </div>
+        <div class="col-lg-12">
+            <p>&nbsp;</p>
+            <p class = "">
 
-        <div class="col-md-8">
-
-            <a href = "{{ wikisky_link }}">
-                <img width = "500px" src = "{{ wikisky_src }}" alt = "wikisky image of {{ title }}">
-            </a>
-
+               <strong> And don’t forget to come back to this web site to name your planetary system!</strong>
+            </p>
         </div>
 
     </div>

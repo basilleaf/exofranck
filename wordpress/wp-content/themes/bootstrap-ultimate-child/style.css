@@ -1,0 +1,114 @@
+/*
+Theme Name: Bootstrap Ultimate Child
+Template: bootstrap-ultimate
+Author: Child Theme Configurator by Lilaea Media
+Version: 1.0
+Updated: 2014-10-26 22:15:53
+*/
+
+@charset "UTF-8";
+@import url('../bootstrap-ultimate/style.css');
+
+.single-post .thumbnail.cboxElement {
+  display:none;
+}
+
+.lead {
+  margin-top:10px;
+  font-size:large;
+}
+
+@media (max-width:600px){
+  .virtualsky {
+    height:250px;
+    overflow:hidden;
+  }
+  .virtualsky_frame {
+    pointer-events:none;
+  }
+  .col-lg-5{
+    margin:0;
+    padding:0;
+  }
+}
+
+@media (max-width:1000px){
+
+  #topmenuwrap {
+    display:none;
+  }
+  .searchwrap {
+    display:none;
+  }
+}
+
+@media (max-width:768px){
+  .searchwrap {
+    display:none;
+  }
+
+  #topmenuwrap {
+    display:none;
+  }
+
+  .page-header {
+    text-align:center;
+    margin-top:-110px;
+    margin-bottom:-15px;
+  }
+  .container-fluid {
+    padding:0;
+    margin:0;
+  }
+
+  .virtualsky_frame {
+      pointer-events:none;
+   }
+
+  .hentry {
+    padding:55px 0;
+  }
+
+  #copyright_foot.authl {
+    display:none;
+  }
+
+  #logo_lg {
+    margin-left:0px;
+  }
+
+}
+
+
+.hentry h2 {
+  text-align:left;
+  padding:25px 0;
+}
+
+legend
+{
+  margin-top:-20px;
+  text-align: right;
+  font-size: smaller;
+}
+
+.jumbotron {
+  margin-top:-20px;
+  background-image: url(http://exoplanets.seti.org/wp-content/uploads/2014/10/Milky_Way_IR_Spitzer_lrg1.jpg);
+  color:white;
+  height:350px;
+}
+
+.jumbotron h1 {
+  font-size:1.8em;
+  background:black;
+  display:inline-block;
+  padding:3px 9px;
+}
+
+#logo_lg {
+  padding:0;
+  margin:0;
+  margin-left:-20px;
+}
+
