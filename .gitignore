@@ -5,3 +5,7 @@ log.txt
 .DS_Store
 wpex-elegant-premium/
 images
+
+qrcodes
+exoplanet_qr_codes.pdf
+*.swp
